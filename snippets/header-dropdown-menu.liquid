@@ -34,16 +34,9 @@
                 {%- for childlink in link.links -%}
                   <li>
                     {%- if childlink.links == blank -%}
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
+                      <div class="soko_search">
+                        <input type="search" placeholder="Search your product">
+                      </div>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
                         <summary
@@ -58,18 +51,9 @@
                           class="header__submenu list-menu motion-reduce"
                         >
                           {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
+                            <div class="soko_search">
+                              <input type="search" placeholder="Search your product">
+                            </div>
                           {%- endfor -%}
                         </ul>
                       </details>
@@ -80,22 +64,12 @@
             </details>
           </header-menu>
         {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
-              {{- link.title | escape -}}
+          <div class="soko_search">
+            <span class="svg-soko_search_icon">
+              {{- 'soko_search.svg' | inline_asset_content -}}
             </span>
-          </a>
+            <input type="search" placeholder="Search your product">
+          </div>
         {%- endif -%}
       </li>
     {%- endfor -%}
